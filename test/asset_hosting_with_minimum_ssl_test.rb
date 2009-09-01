@@ -8,7 +8,7 @@ require 'asset_hosting_with_minimum_ssl'
 
 class AssetHostingWithMinimumSslTest < Test::Unit::TestCase
   def setup
-    @asset_host = AssetHostingWithMinimumSsl.new("http://assets%d.example.com/", "https://assets1.example.com/")
+    @asset_host = AssetHostingWithMinimumSsl.new("http://assets0.example.com/", "https://assets1.example.com/")
   end
   
   def test_ssl_requests_for_javascript_files_should_stay_ssl_regardless_of_the_browser
