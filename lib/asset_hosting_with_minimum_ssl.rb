@@ -6,7 +6,7 @@ class AssetHostingWithMinimumSsl
   end
   
   def call(source, request)
-    if request.ssl?
+    if request && request.ssl?
       case
       when javascript_file?(source)
         ssl_asset_host(source)
