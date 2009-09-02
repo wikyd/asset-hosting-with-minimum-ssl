@@ -34,7 +34,7 @@ class AssetHostingWithMinimumSsl
 
 
     def javascript_file?(source)
-      source =~ /\.js$/
+      source =~ /\.js($|\?)/
     end
     
     def image_file?(source)
