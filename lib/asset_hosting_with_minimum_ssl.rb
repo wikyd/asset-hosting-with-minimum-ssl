@@ -38,9 +38,8 @@ class AssetHostingWithMinimumSsl
     end
     
     def image_file?(source)
-      source =~ /^\/images/
+      source =~ /\.(png|jpe?g|gif)($|\?)/
     end
-
 
     def safari?(request)
       request.headers["USER_AGENT"] =~ /Safari/
