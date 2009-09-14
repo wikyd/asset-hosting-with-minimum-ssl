@@ -35,6 +35,12 @@ class AssetHostingWithMinimumSslTest < Test::Unit::TestCase
       @asset_host.call("/images/blank.gif", ssl_request_from("Firefox"))
   end
 
+  def test_ssl_requests_for_image_files_with_a_different_path_should_go_non_ssl_on_firefox
+    assert_match \
+      non_ssl_host, 
+      @asset_host.call("/uploaded_assets/blank.gif", ssl_request_from("Firefox"))
+  end
+
   def test_ssl_requests_for_non_image_files_should_stay_ssl_on_firefox
     assert_match \
       ssl_host, 
