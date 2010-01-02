@@ -42,7 +42,7 @@ class AssetHostingWithMinimumSsl
     end
 
     def safari?(request)
-      request.headers["USER_AGENT"] =~ /Safari/
+      request.headers["USER_AGENT"] =~ /Safari/ && request.headers["USER_AGENT"] !~ /Chrome/
     end
     
     def firefox?(request)

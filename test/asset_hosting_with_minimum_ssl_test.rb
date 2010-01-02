@@ -53,6 +53,11 @@ class AssetHostingWithMinimumSslTest < Test::Unit::TestCase
       @asset_host.call("/stylesheets/application.css", ssl_request_from("IE"))
   end
   
+  def test_ssl_requests_for_anything_should_stay_ssl_on_chrome
+    assert_match \
+      ssl_host, 
+      @asset_host.call("/stylesheets/application.css", ssl_request_from("Chrome Safari"))
+  end
 
   private
     def non_ssl_host
