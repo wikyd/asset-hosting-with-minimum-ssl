@@ -1,8 +1,10 @@
 class AssetHostingWithMinimumSsl
   attr_accessor :asset_host, :ssl_asset_host
+  attr_accessor :host_count
   
-  def initialize(asset_host, ssl_asset_host)
+  def initialize(asset_host, ssl_asset_host, host_count = 4)
     self.asset_host, self.ssl_asset_host = asset_host, ssl_asset_host
+    self.host_count = host_count
   end
   
   def call(source, request)
@@ -25,11 +27,11 @@ class AssetHostingWithMinimumSsl
   
   private
     def asset_host(source)
-      @asset_host % (source.hash % 2)
+      @asset_host % (source.hash % host_count)
     end
 
     def ssl_asset_host(source)
-      @ssl_asset_host % (source.hash % 2)
+      @ssl_asset_host % (source.hash % host_count)
     end
 
 
