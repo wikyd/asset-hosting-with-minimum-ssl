@@ -26,12 +26,17 @@ class AssetHostingWithMinimumSsl
   
   
   private
+    # Consistently hash across different machines
+    def host_number(source)
+      Digest::MD5.hexdigest(source).to_i(16) % host_count
+    end
+
     def asset_host(source)
-      @asset_host % (source.hash % host_count)
+      @asset_host % host_number(source)
     end
 
     def ssl_asset_host(source)
-      @ssl_asset_host % (source.hash % host_count)
+      @ssl_asset_host % host_number(source)
     end
 
 
